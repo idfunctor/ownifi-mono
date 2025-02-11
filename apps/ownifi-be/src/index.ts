@@ -20,7 +20,6 @@ app.get('/health', (c) => c.json({ status: 'ok' }))
 app.route('/auth', auth)
 app.route('/spotify', spotify)
 app.route('/library', library)
-
 // Start server
 const port = parseInt(env.PORT)
 
