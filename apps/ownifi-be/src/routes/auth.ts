@@ -61,8 +61,8 @@ auth.get('/callback', async (c) => {
     c.header('Set-Cookie', `sb-access-token=${session.access_token}; Path=/; HttpOnly; SameSite=Lax`);
     c.header('Set-Cookie', `sb-refresh-token=${session.refresh_token}; Path=/; HttpOnly; SameSite=Lax`);
 
-    console.log('Redirecting to dashboard...');
-    return c.redirect(`${FRONTEND_URL}/dashboard`);
+    console.log('Redirecting to account...');
+    return c.redirect(`${FRONTEND_URL}/account`);
   } catch (error) {
     console.error('Auth error:', error);
     return c.redirect(`${FRONTEND_URL}/login?error=unknown_error`);

@@ -1,7 +1,6 @@
 import { Component, createSignal, onMount } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 import { supabase } from '../lib/supabase';
-import "./index.css";
 
 const Home: Component = () => {
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ const Home: Component = () => {
           if (sessionError) throw sessionError;
           
           console.log('Session set after verification');
-          navigate('/dashboard');
+          navigate('/account');
           return;
         } catch (error) {
           console.error('Error setting session:', error);
@@ -35,7 +34,7 @@ const Home: Component = () => {
     // Check if user is already logged in
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
-      navigate('/dashboard');
+      navigate('/account');
     } else {
       navigate('/login');
     }

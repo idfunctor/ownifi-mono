@@ -94,7 +94,7 @@ const Callback: Component = () => {
             await createUserProfile(user);
           }
 
-          navigate('/dashboard');
+          navigate('/account');
           return;
         }
       }
@@ -151,8 +151,8 @@ const Callback: Component = () => {
         await createUserProfile(user);
       }
 
-      console.log('Successfully logged in, redirecting to dashboard...');
-      navigate('/dashboard');
+      console.log('Successfully logged in, redirecting to account...');
+      navigate('/account');
     } catch (error: any) {
       console.error('Auth error:', error);
       navigate('/login?error=' + encodeURIComponent(error.message || 'unknown_error'));

@@ -21,7 +21,7 @@ const Login: Component = () => {
     // Check if user is already logged in
     const { data: { user: currentUser } } = await supabase.auth.getUser();
     if (currentUser) {
-      navigate('/dashboard');
+      navigate('/account');
       return;
     }
 

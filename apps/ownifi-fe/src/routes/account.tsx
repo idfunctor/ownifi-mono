@@ -1,24 +1,14 @@
-import { Component, createSignal, onMount, Show } from 'solid-js';
+import { Component } from 'solid-js';
+import { Title } from '@solidjs/meta';
 import { useNavigate } from '@solidjs/router';
 import { supabase } from '../lib/supabase';
-import SpotifyConnect from '../components/SpotifyConnect';
+import { auth } from '../lib/auth';
+import SpotifyConnect from '../components/SpotifyConnect/SpotifyConnect';
+import AuthGuard from '../components/AuthGuard/AuthGuard';
 
-const Dashboard: Component = () => {
+const Account: Component = () => {
   const navigate = useNavigate();
-  const [user, setUser] = createSignal<any>(null);
-  const [loading, setLoading] = createSignal(true);
-
-  onMount(async () => {
-    const { data: { user: currentUser } } = await supabase.auth.getUser();
-    
-    if (!currentUser) {
-      navigate('/login');
-      return;
-    }
-
-    setUser(currentUser);
-    setLoading(false);
-  });
+  const user = auth.user;
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -26,13 +16,12 @@ const Dashboard: Component = () => {
   };
 
   return (
-    <div class="container mx-auto p-8 max-w-3xl">
-      <Show when={!loading()} fallback={<div class="flex justify-center"><span class="loading loading-spinner loading-lg"></span></div>}>
-        <div class="flex flex-col items-center">
-          <h1 class="text-3xl font-bold mb-8">Welcome to Ownifi!</h1>
-          
+    <AuthGuard>
+      <div class="min-h-screen hero bg-base-200">
+        <Title>Account - Ownifi</Title>
+        <div class="hero-content text-center w-full">
           <div class="card bg-base-100 shadow-xl w-full max-w-md">
-            <div class="card-body items-center">
+            <div class="card-body items-center space-y-4">
               <div class="avatar">
                 <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                   <img 
@@ -60,9 +49,9 @@ const Dashboard: Component = () => {
             </div>
           </div>
         </div>
-      </Show>
-    </div>
+      </div>
+    </AuthGuard>
   );
 };
 
-export default Dashboard; 
+export default Account; 

@@ -1,6 +1,6 @@
 import { Component, createResource } from 'solid-js';
-import { supabase } from '../lib/supabase';
-import { ownifetch } from '../utils/ownifetch';
+import { supabase } from '../../lib/supabase';
+import { ownifetch } from '../../utils/ownifetch';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3030';
 
@@ -35,7 +35,7 @@ const SpotifyConnect: Component = () => {
   return (
     <>
       {status()?.isConnected ? (
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center gap-8 py-2">
           <div class="text-success font-semibold">
             Spotify Connected
           </div>

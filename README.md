@@ -96,3 +96,27 @@ This project is protected under a strict proprietary license. All rights are res
 - No part of this codebase may be reproduced, modified, or distributed
 - Commercial and personal use are strictly prohibited
 - See the [LICENSE](./LICENSE) file for full terms and conditions
+
+## Code Organization Rules
+
+### Component Structure
+- Each component should be in its own directory under `src/components/`
+- Directory name should match the component name
+- Component file should be named same as the directory
+- Example:
+  ```
+  src/components/
+    ├── AuthGuard/
+    │   └── AuthGuard.tsx
+    ├── Navbar/
+    │   └── Navbar.tsx
+    └── SpotifyConnect/
+        └── SpotifyConnect.tsx
+  ```
+- No index.ts files - import components directly from their files
+- This structure allows for future component-specific files (tests, styles, etc.) to be colocated
+
+### Cursor Rules
+- Keep cursor at the end of the line when committing
+- Avoid leaving cursor in middle of code blocks
+- This helps maintain clean git diffs and makes code reviews easier

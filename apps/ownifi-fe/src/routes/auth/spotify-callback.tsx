@@ -14,7 +14,7 @@ const SpotifyCallback: Component = () => {
     
     if (!code) {
       console.error('No code received from Spotify');
-      navigate('/dashboard?error=no_code');
+      navigate('/account?error=no_code');
       return;
     }
 
@@ -28,14 +28,14 @@ const SpotifyCallback: Component = () => {
       // Forward the code to our backend
       const response = await ownifetch(`${API_URL}/spotify/callback?code=${code}`);
 
-      if (!response.ok) {
-        throw new Error('Backend call failed');
+      if (response.ok) {
+        navigate('/account?success=connected');
+      } else {
+        navigate('/account?error=connection_failed');
       }
-
-      navigate('/dashboard?success=connected');
     } catch (error) {
       console.error('Failed to connect Spotify:', error);
-      navigate('/dashboard?error=connection_failed');
+      navigate('/account?error=connection_failed');
     }
   });
 
