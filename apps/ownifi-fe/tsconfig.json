@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strict": true,
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
@@ -7,13 +8,15 @@
     "esModuleInterop": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "allowJs": true,
-    "strict": true,
-    "noEmit": true,
     "types": ["vinxi/types/client", "vitest/globals", "@testing-library/jest-dom"],
+    "noEmit": true,
     "isolatedModules": true,
     "paths": {
       "~/*": ["./src/*"]
     }
-  }
+  },
+  "references": [
+    { "path": "../ownifi-be" }
+  ],
+  "include": ["src"]
 }
