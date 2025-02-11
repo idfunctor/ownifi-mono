@@ -1,84 +1,93 @@
-# Turborepo starter
+# Ownifi
 
-This Turborepo starter is maintained by the Turborepo core team.
+A modern web application that integrates with Spotify, built with SolidJS and Hono.
 
-## Using this example
+## Features
 
-Run the following command:
+- Spotify Authentication
+- User Management with Supabase
+- Modern, responsive UI
+- Secure session handling
 
-```sh
-npx create-turbo@latest
+## Prerequisites
+
+- Node.js 18+ and Bun
+- Supabase account
+- Spotify Developer account
+
+## Setup
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/ownifi.git
+cd ownifi
 ```
 
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+2. Install dependencies:
+```bash
+bun install
 ```
 
-### Develop
+3. Set up Supabase:
+   - Create a new project at [supabase.com](https://supabase.com)
+   - Run the database migrations from `apps/ownifi-be/src/db/schema.sql`
+   - Copy your project URL and keys
 
-To develop all apps and packages, run the following command:
+4. Set up Spotify:
+   - Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+   - Create a new application
+   - Add `http://localhost:3030/auth/callback/spotify` to the Redirect URIs
+   - Copy your Client ID and Client Secret
 
-```
-cd my-turborepo
-pnpm dev
-```
+5. Configure environment variables:
+   - Copy `apps/ownifi-be/.env.example` to `apps/ownifi-be/.env`
+   - Fill in your Supabase and Spotify credentials
 
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+6. Start the development servers:
+```bash
+# Start both frontend and backend
+bun dev
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+The application will be available at:
+- Frontend: http://localhost:3000
+- Backend: http://localhost:3030
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+## Project Structure
 
 ```
-npx turbo link
+ownifi/
+├── apps/
+│   ├── ownifi-fe/          # Frontend (SolidJS)
+│   │   ├── src/
+│   │   │   ├── routes/     # Page components
+│   │   │   └── components/ # Reusable components
+│   │   └── ...
+│   │
+│   └── ownifi-be/          # Backend (Hono)
+│       ├── src/
+│       │   ├── routes/     # API routes
+│       │   ├── services/   # Business logic
+│       │   ├── db/         # Database schemas
+│       │   └── config/     # Configuration
+│       └── ...
+└── ...
 ```
 
-## Useful Links
+## Development
 
-Learn more about the power of Turborepo:
+- Frontend is built with SolidJS and uses CSS modules for styling
+- Backend uses Hono for the API and Supabase for database/auth
+- Authentication flow uses Spotify OAuth 2.0
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
