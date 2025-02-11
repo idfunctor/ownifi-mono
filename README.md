@@ -90,4 +90,9 @@ ownifi/
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is protected under a strict proprietary license. All rights are reserved.
+
+- Viewing and reading the source code is permitted for educational and reference purposes only
+- No part of this codebase may be reproduced, modified, or distributed
+- Commercial and personal use are strictly prohibited
+- See the [LICENSE](./LICENSE) file for full terms and conditions
